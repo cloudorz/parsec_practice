@@ -1,3 +1,18 @@
+module CCTextParser
+( p_type
+, p_pic
+, p_audio
+, p_tr
+, p_params
+, p_content
+, p_anme
+, p_value
+, p_bool
+, p_string_value
+, p_number
+, eoItem
+) where
+
 import Text.ParserCombinators.Parsec
 import Data.Functor 
 import Numeric

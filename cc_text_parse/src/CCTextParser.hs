@@ -54,8 +54,7 @@ p_value = choice $ try <$> [ IBool <$> p_bool
                  , IString <$> p_string_value]
 
 p_bool :: CharParser () Bool
-p_bool = (try (True <$ (string "true" <* notFollowedBy (noneOf " ,)")))) <|> False <$ (string "false" <* notFollowedBy (oneOf " ,)"))
--- p_bool = True <$ string "true" <|> False <$ string "false"
+p_bool = True <$ (string "true" <* notFollowedBy (noneOf " ,)")) <|> False <$ (string "false" <* notFollowedBy (noneOf " ,)"))
 
 p_string_value :: CharParser () String
 p_string_value = spaces *> (many1 alphaNum) <* spaces

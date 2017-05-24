@@ -15,30 +15,28 @@ spec = do
         parse p_bool "(unknown)" "false" `shouldBe` return False
 
       it "can parse 'true ' " $ do 
-        pending
+        parse p_bool "(unknown)" "true " `shouldBe` return True
 
       it "can parse 'true,' " $ do 
-        pending
+        parse p_bool "(unknown)" "true," `shouldBe` return True
 
       it "can parse 'true)' " $ do 
-        pending
+        parse p_bool "(unknown)" "true)" `shouldBe` return True
 
       it "can parse 'false ' " $ do 
-        pending
+        parse p_bool "(unknown)" "false " `shouldBe` return False
 
       it "can parse 'false,' " $ do 
-        pending
+        parse p_bool "(unknown)" "false," `shouldBe` return False
 
       it "can parse 'false)' " $ do 
-        pending
+        parse p_bool "(unknown)" "false)" `shouldBe` return False
 
-      context "when parse 'falsetrue' " $ do
-        it "should throw an error" $ do 
-          pending
+      it "can't parse 'falsetrue' to False" $ do 
+        parse p_bool "(unknown)" "falsetrue" `shouldSatisfy` ((/=) (return False))
 
-      context "when parse 'truefalse' " $ do
-        it "should throw an error" $ do 
-          pending
+      it "can't parse 'truefalse' to True" $ do 
+        parse p_bool "(unknown)" "truefalse" `shouldSatisfy` ((/=) (return True))
     
     describe "parse params key" $ do 
       it "can parse 'abcABC' " $ do 

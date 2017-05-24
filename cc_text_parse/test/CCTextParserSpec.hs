@@ -37,6 +37,14 @@ spec = do
 
       it "can't parse 'truefalse' to True" $ do 
         parse p_bool "(unknown)" "truefalse" `shouldSatisfy` ((/=) (return True))
+
+      context "when parse 'true)' success" $ do 
+        it "did not eat tail letter" $ do 
+          parse (p_bool *> letter) "(unknown)" "true," `shouldBe` return ","
+
+      context "when parse 'falsetrue' failed" $ do 
+        it "did not eat any letters" $ do 
+          parse (p_bool *> (many anyChar)) "(unknown)" "falsetrue" `shouldBe` return "falsetrue"
     
     describe "parse params key" $ do 
       it "can parse 'abcABC' " $ do 

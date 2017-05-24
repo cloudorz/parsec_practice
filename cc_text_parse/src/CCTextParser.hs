@@ -54,7 +54,7 @@ p_value = choice $ try <$> [ IBool <$> p_bool
                  , IString <$> p_string_value]
 
 p_bool :: CharParser () Bool
-p_bool = (try (True <$ (string "true" <* notFollowedBy (noneOf " ,)")))) <|> False <$ (string "false" <* lookAhead (oneOf " ,)"))
+p_bool = (try (True <$ (string "true" <* notFollowedBy (noneOf " ,)")))) <|> False <$ (string "false" <* notFollowedBy (oneOf " ,)"))
 -- p_bool = True <$ string "true" <|> False <$ string "false"
 
 p_string_value :: CharParser () String

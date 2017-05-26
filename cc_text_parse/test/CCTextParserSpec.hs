@@ -55,12 +55,20 @@ spec = do
           pending
 
     describe "parse params key" $ do 
-      it "can parse 'abcABC' " $ do 
-        pending
+      it "can parse 'abcABC' " $ do
+        parse p_name "(unknown)" "abcABC" `shouldBe` return "abcABC"
 
       it "can parse 'abc123' " $ do 
-        pending
+        parse p_name "(unknown)" "abc123" `shouldBe` return "abc123"
 
-      it "should throw an error" $ do 
-        pending
+      it "can't parse abc_123" $ do 
+        parse p_name "(unknown)" "abc_123" `shouldNotBe` return "abc_123"
 
+    describe "parse string value" $ do
+      it "can parse '  abc123   ' to 'abc123'" $ do 
+        parse p_string_value "(unknown)" "  abc123   " `shouldBe` return "abc123" 
+
+    describe "parse number" $ do
+      it "can parse '88' to 88.0" $ do 
+        pending 
+      

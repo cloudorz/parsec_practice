@@ -61,7 +61,7 @@ p_coms :: String -> CharParser () String
 p_coms prefix = choice $ try . lookAhead . string . (prefix ++) <$> [")", ",", " ", "\n"]
 
 p_string_value :: CharParser () String
-p_string_value = spaces *> (many1 alphaNum) <* spaces
+p_string_value = spaces *> p_name <* spaces
 
 p_number :: CharParser () Double 
 p_number = do 
